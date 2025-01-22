@@ -1,11 +1,25 @@
-import SearchForm from "../components/SearchForm"
+import StartupCard from "@/components/shared/StartupCard"
+import SearchForm from "../../components/shared/SearchForm"
 
 export default async function Home({
-  searchParams
+  searchParams,
 }: {
   searchParams: Promise<{ query?: string }>
 }) {
   const query = (await searchParams).query
+  const posts = [
+    {
+      _createdAt: "Yesterday",
+      views: 55,
+      author: { _id: 1 },
+      _id: 1,
+      description: "Zaloopa Zaloopivna Zaloopenko",
+      image:
+        "https://hatrabbits.com/wp-content/uploads/2017/01/random-word-1.jpg",
+      category: "Robots",
+      title: "Zaloopa",
+    },
+  ]
 
   return (
     <>
@@ -19,6 +33,19 @@ export default async function Home({
           Competitions.
         </p>
         <SearchForm query={query} />
+      </section>
+
+      <section className="section_container">
+        <p className="text-30-semibold">
+          {query ? `Search results for "${query}"` : "All Startups"}
+        </p>
+        <ul className="mt-7 card-grid">
+          {posts?.length > 0 ? (
+            posts.map((post, index) => <StartupCard />)
+          ) : (
+            <p className="no-results">No startups found</p>
+          )}
+        </ul>
       </section>
     </>
   )
