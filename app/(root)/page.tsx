@@ -9,9 +9,9 @@ export default async function Home({
   const query = (await searchParams).query
   const posts = [
     {
-      _createdAt: "Yesterday",
+      _createdAt: new Date(),
       views: 55,
-      author: { _id: 1 },
+      author: { _id: 1, name: "Zaloopa" },
       _id: 1,
       description: "Zaloopa Zaloopivna Zaloopenko",
       image:
@@ -41,7 +41,9 @@ export default async function Home({
         </p>
         <ul className="mt-7 card-grid">
           {posts?.length > 0 ? (
-            posts.map((post, index) => <StartupCard />)
+            posts.map((post: StartupCardType, index: number) => (
+              <StartupCard key={post._id} post={post} />
+            ))
           ) : (
             <p className="no-results">No startups found</p>
           )}
