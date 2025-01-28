@@ -1,4 +1,4 @@
-import type { NextConfig } from "next"
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-}
+  experimental: {
+    ppr: "incremental",
+  },
+  devIndicators: {
+    appIsrStatus: true,
+    buildActivity: true,
+    buildActivityPosition: "bottom-right",
+  },
+};
 
-export default nextConfig
+export default nextConfig;

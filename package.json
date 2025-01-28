@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predev": "npm run typegen",
+    "prebuild": "npm run typegen",
+    "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",
@@ -16,13 +19,14 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.473.0",
-    "next": "15.1.0",
+    "next": "^15.2.0-canary.28",
     "next-auth": "^5.0.0-beta.25",
     "next-sanity": "^9.8.29-canary.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sanity": "^3.71.2",
     "sanity-plugin-markdown": "^5.0.0",
+    "server-only": "^0.0.1",
     "styled-components": "^6.1.14",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
