@@ -1,9 +1,9 @@
-import { auth, signOut, signIn } from "@/auth"
-import Image from "next/image"
-import Link from "next/link"
+import { auth, signOut, signIn } from "@/auth";
+import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = async () => {
-  const session = await auth()
+  const session = await auth();
 
   return (
     <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
@@ -19,8 +19,8 @@ const Navbar = async () => {
               </Link>
               <form
                 action={async () => {
-                  "use server"
-                  await signOut({ redirectTo: "/" })
+                  "use server";
+                  await signOut({ redirectTo: "/" });
                 }}
               >
                 <button type="submit">Logout</button>
@@ -33,8 +33,8 @@ const Navbar = async () => {
           ) : (
             <form
               action={async () => {
-                "use server"
-                await signIn("github")
+                "use server";
+                await signIn("github");
               }}
             >
               <button type="submit">Login</button>
@@ -43,7 +43,7 @@ const Navbar = async () => {
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
