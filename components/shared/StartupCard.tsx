@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { formatDate } from "@/lib/utils";
 import { EyeIcon } from "lucide-react";
 import Image from "next/image";
@@ -50,7 +51,7 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
       <Link href={`/startup/${_id}`}>
         <p className="startup-card_desc">{description}</p>
 
-        <img className="startup-card_img" src={image} />
+        <img className="startup-card_img" src={image} alt="startup image" />
       </Link>
 
       <div className="flex-between gap-3 mt-5">
