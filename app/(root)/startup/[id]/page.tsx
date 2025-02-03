@@ -47,14 +47,14 @@ const StartupPage = async ({ params }: { params: Promise<{ id: string }> }) => {
                 className="rounded-full drop-shadow-lg"
                 width={64}
                 height={64}
-                src={post.author.image}
+                src={post.author?.image}
                 alt="avatar"
               />
               <div>
-                <p className="text-20-medium">{post.author.name}</p>
-                {post.author.username && (
+                <p className="text-20-medium">{post.author?.name}</p>
+                {post.author?.username && (
                   <p className="text-16-medium !text-black-300">
-                    @{post.author.username}
+                    @{post.author?.username}
                   </p>
                 )}
               </div>

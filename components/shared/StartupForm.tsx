@@ -1,15 +1,16 @@
 "use client";
 
+import { useToast } from "@/hooks/use-toast";
+import { createStartup } from "@/lib/actions";
+import { formSchema } from "@/lib/validation";
+import MDEditor from "@uiw/react-md-editor";
+import { SendIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useActionState, useState } from "react";
+import { z } from "zod";
+import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import MDEditor from "@uiw/react-md-editor";
-import { Button } from "../ui/button";
-import { SendIcon } from "lucide-react";
-import { formSchema } from "@/lib/validation";
-import { z } from "zod";
-import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 
 const StartupForm = () => {
   const router = useRouter();
@@ -28,17 +29,16 @@ const StartupForm = () => {
       };
 
       await formSchema.parseAsync(formValues);
-      console.log("formValues", formValues);
-      //   const result = await createStartup(prevState, formData, pitch)
-      //   if (result.status == "SUCCESS") {
-      //     toast({
-      //       title: "Success",
-      //       description: "Your startup has been created",
-      //     });
-      //     router.push(`/startup/${result.id}`);
-      //   }
+        const result = await createStartup(prevState, formData, pitch)
+        if (result.status == "SUCCESS") {
+          toast({
+            title: "Success",
+            description: "Your startup has been created",
+          });
+          router.push(`/startup/${result._id}`);
+        }
 
-      //   return result
+        return result
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors = error.flatten().fieldErrors;
