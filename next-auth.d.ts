@@ -1,9 +1,15 @@
-// declare module "next-auth" {
-//   interface Session {
-//     id: string;
-//   }
+import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
 
-//   interface JWT {
-//     id: string;
-//   }
-// }
+declare module "next-auth" {
+  interface Session extends DefaultSession {
+    id: string;
+  }
+
+  interface User extends DefaultUser {
+    id: string;
+  }
+
+  interface JWT {
+    id: string;
+  }
+}
