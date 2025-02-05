@@ -1,10 +1,15 @@
 import { auth } from "@/auth"
+import { StartupCardSkeleton } from "@/components/shared/StartupCard"
+import UserStartups from "@/components/shared/UserStartups"
 import { client } from "@/sanity/lib/client"
 import { AUTHOR_BY_ID_QUERY } from "@/sanity/lib/queries"
 import Image from "next/image"
 import { notFound } from "next/navigation"
+import { Suspense } from "react"
 
-const UsePage = async ({ params }: { params: Promise<{ id: string }> }) => {
+export const experimental_ppr = true
+
+const UserPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id
   const session = await auth()
 
@@ -39,7 +44,9 @@ const UsePage = async ({ params }: { params: Promise<{ id: string }> }) => {
             {session?.id === id ? "Your" : "All"} Startups
           </p>
           <ul className="card_grid-sm">
-            
+            <Suspense fallback={<StartupCardSkeleton />}>
+              <UserStartups id={id} />
+            </Suspense>
           </ul>
         </div>
       </section>
@@ -47,4 +54,4 @@ const UsePage = async ({ params }: { params: Promise<{ id: string }> }) => {
   )
 }
 
-export default UsePage
+export default UserPage
