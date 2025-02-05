@@ -1,8 +1,8 @@
-import { auth, signOut, signIn } from "@/auth"
+import { auth, signIn, signOut } from "@/auth"
 import { BadgePlus, LogOut } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { Avatar, AvatarImage } from "../ui/avatar"
 
 const Navbar = async () => {
   const session = await auth()
@@ -38,7 +38,6 @@ const Navbar = async () => {
                     src={session?.user?.image || ""}
                     alt={session?.user?.name || ""}
                   />
-                  <AvatarFallback>НЕМА АВОЧКИ</AvatarFallback>
                 </Avatar>
                 <span>{session?.user?.name}</span>
               </Link>
